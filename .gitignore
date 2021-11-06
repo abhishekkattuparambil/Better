@@ -1,3 +1,5 @@
 **/__pycache__
 **/node_modules
 *.json
+Scrapers/sportsipy/*
+!Scrapers/sportsipy/nba_players.py
