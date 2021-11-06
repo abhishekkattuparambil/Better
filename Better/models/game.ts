@@ -17,13 +17,11 @@ export interface BaseballModel {
   export interface BasketballModel {
     away: string;
     away_ml: string;
-    away_coach: string;
     away_spread: string;
     date: string;
     time:string;
     home:string;
     home_ml:string;
-    home_coach:string;
     home_spread:string;
     over:string;
     under:string;

@@ -2,14 +2,12 @@ import React from 'react'
 import {StyleSheet, View, TouchableOpacity} from 'react-native'
 import {Styles} from '../constants/Styles.js'
 import {BaseballModel, BasketballModel} from '../models/game.js'
-import { formatDate, getDate , formatTime } from '../Utils.js'
 import {
     Box,
     Image,
     NativeBaseProvider,
     Text,
     HStack,
-    Stack,
     VStack,
   } from "native-base"
 
@@ -31,7 +29,7 @@ function getMatchup(home : String, away: String) {
     return homestr + ' @ ' + awaystr
 }
 
-export function getHeader(game: BaseballModel, type: String) {
+export function getHeader(game: BaseballModel | BasketballModel, type: String) {
     return (
     <HStack alignSelf='center' alignItems='center' space={10}>
                     <Image
@@ -46,8 +44,8 @@ export function getHeader(game: BaseballModel, type: String) {
                         resizeMode='contain'
                     />
                         <VStack>
-                            <Text>{formatDate()}</Text>
-                            <Text>{formatTime()}</Text>
+                            <Text>{game.date}</Text>
+                            <Text>{game.time}</Text>
                         </VStack>
                     <Image
                     source={{
@@ -57,14 +55,13 @@ export function getHeader(game: BaseballModel, type: String) {
                         uri: `https://cdn.statmuse.com/img/${type}/teams/${type}_` + game.away.replaceAll(' ', '_').toLowerCase() + '_secondary.png',
                     }}
                     alt="Alternate Text"
-                    size={"7"}
+                    size={"8"}
                     resizeMode='contain'
                 />
                     </HStack>
     )
 }
 export function BaseballCard(game: BaseballModel) {
-    getDate(game.date['seconds']);
     return (
         <NativeBaseProvider>
             <HStack>
@@ -103,6 +100,43 @@ export function BaseballCard(game: BaseballModel) {
                         <Text style={Styles.body}>{game.home_pitcher}</Text>
                     </VStack>
                 </TouchableOpacity>
+            </HStack>
+        </NativeBaseProvider>
+    )
+}
+
+export function BasketballCard(game: BasketballModel) {
+    return (
+        <NativeBaseProvider>
+            <HStack>
+                <Box style={Styles.card}>
+                {getHeader(game, "nba")}
+                <Text alignSelf='center'>{getMatchup(game.home, game.away)}</Text>
+                    <HStack>
+                        <VStack>
+                            <TouchableOpacity style={Styles.market} onPress={() => console.log(game.away_spread)}>
+                                <Text>{game.away_spread}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={Styles.market} onPress={() => console.log(game.away_ml)}>
+                                <Text>{game.away_ml}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={Styles.market} onPress={() => console.log(game.over)}>
+                                <Text>{game.over}</Text>
+                            </TouchableOpacity>
+                        </VStack>
+                        <VStack>
+                            <TouchableOpacity style={Styles.market} onPress={() => console.log(game.home_spread)}>
+                                <Text>{game.home_spread}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={Styles.market} onPress={() => console.log(game.home_ml)}>
+                                <Text>{game.home_ml}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={Styles.market} onPress={() => console.log(game.under)}>
+                                <Text>{game.under}</Text>
+                            </TouchableOpacity>
+                        </VStack>
+                    </HStack>
+                </Box>
             </HStack>
         </NativeBaseProvider>
     )

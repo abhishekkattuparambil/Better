@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { View, FlatList, Text, Alert, StyleSheet} from "react-native";
-import {BaseballCard} from '../components/Card'
-import firebase from "firebase/app";
+import {BasketballCard} from '../../components/Card'
+import firebase from "firebase";
 import "firebase/firestore";
-import { BaseballModel } from "../models/game.js";
-import { Styles } from '../constants/Styles.js'
+import { BaseballModel } from "../../models/game.js";
+import { Styles } from '../../constants/Styles.js'
+import moment from 'moment'
   
-export function BaseballScreen() {
-    const firebaseConfig = require("../keys.json");
+export function BasketballScreen() {
     const [games, setGames] = useState<BaseballModel[]>([]);
   
     useEffect(() => {
+      const td = new Date()
+      
+      const today = moment(td, 'MM/DD/YY')  
       var db = firebase.firestore();
       const unsubscribe = db
-        .doc("baseball").collection("")
-        .orderBy("date", "asc")
+        .collection("basketball")
+        .where("date", "!=", "12/25/21")
         .onSnapshot((querySnapshot: any) => {
           var readGames: BaseballModel[] = [];
           querySnapshot.forEach((doc: any) => {
@@ -23,7 +26,6 @@ export function BaseballScreen() {
             readGames.push(game)
           });
           setGames(readGames);
-          console.log(games.length)
         });
       return unsubscribe;
     }, []);
@@ -36,7 +38,7 @@ export function BaseballScreen() {
         console.log(item.away_ml)
       };
   
-      return BaseballCard(item);
+      return BasketballCard(item);
     };
 
     return (

@@ -11,7 +11,7 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 baseball = 'https://www.bovada.lv/sports/baseball'
-path = '/Users/abhishekkattuparambil/Desktop/PyScraper/chromedriver'
+path = '/Users/abhishekkattuparambil/Desktop/Better/Scrapers/chromedriver'
 
 driver = webdriver.Chrome(path)
 driver.get(baseball)

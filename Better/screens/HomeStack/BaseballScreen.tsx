@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { View, FlatList, Text, Alert, StyleSheet} from "react-native";
-import {BaseballCard} from '../components/Card'
-import firebase from "firebase";
+import {BaseballCard} from '../../components/Card'
+import firebase from "firebase/app";
 import "firebase/firestore";
-import { BaseballModel } from "../models/game.js";
-import { Styles } from '../constants/Styles.js'
+import { BaseballModel } from "../../models/game.js";
+import { Styles } from '../../constants/Styles.js'
   
-export function BasketballScreen() {
-    const firebaseConfig = require("../keys.json");
+export function BaseballScreen() {
     const [games, setGames] = useState<BaseballModel[]>([]);
   
     useEffect(() => {
       var db = firebase.firestore();
       const unsubscribe = db
-        .doc("baseball").collection("")
+        .collection("baseball")
         .orderBy("date", "asc")
         .onSnapshot((querySnapshot: any) => {
           var readGames: BaseballModel[] = [];
