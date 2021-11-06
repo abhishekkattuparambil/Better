@@ -1,0 +1,2 @@
+0 9 * * * /Users/abhishekkattuparambil/Desktop/Better/Scrapers/basketball_scraper.py /Users/abhishekkattuparambil/Desktop/Better/Scrapers/basketball.log
+0 9 * * * /Users/abhishekkattuparambil/Desktop/Better/Scrapers/baseball_scraper.py /Users/abhishekkattuparambil/Desktop/Better/Scrapers/baseball.log

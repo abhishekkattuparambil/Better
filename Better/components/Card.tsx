@@ -86,6 +86,7 @@ function ML(game: BaseballModel | BasketballModel, home: boolean){
         title: home ? game.home : game.away, 
         game: getMatchup(game.home, game.away)} as Bet;
     active.push(bet)
+    console.log(active)
 }
 
 function spread(game: BaseballModel | BasketballModel, home: boolean) {
