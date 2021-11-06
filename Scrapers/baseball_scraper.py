@@ -38,6 +38,7 @@ for i in range(len(competitors)):
     if empty == 0:
         event_pieces = competitors[i].text.strip().split("\n")
         date_pieces = periods[2*i+1].text.strip().split("\n")
+        print(date_pieces)
         markets = [button.text for button in buttons[6*i-empties:6*i+6-empties]]
         date_formatted = datetime.strptime(date_pieces[0] + ' ' + reformat(date_pieces[1]), '%m/%d/%y %H:%M')
         db.collection('games').document(date_pieces[0]).collection('baseball').document(competitors[i].text.strip()).set({

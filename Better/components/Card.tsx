@@ -13,7 +13,7 @@ import {
   } from "native-base"
 import { Bet } from '../models/money.js'
 
-export const [active, setActive] = useState<Bet[]>([]);
+const active: Bet[] = [];
 
 function getMatchup(home : String, away: String) {
     var homesplit = home.split(' ')
@@ -85,7 +85,7 @@ function ML(game: BaseballModel | BasketballModel, home: boolean){
         multiplier: oddsToMultiplier(odds),
         title: home ? game.home : game.away, 
         game: getMatchup(game.home, game.away)} as Bet;
-        active.push(bet);
+    active.push(bet)
 }
 
 function spread(game: BaseballModel | BasketballModel, home: boolean) {
@@ -102,7 +102,7 @@ function spread(game: BaseballModel | BasketballModel, home: boolean) {
         multiplier: oddsToMultiplier(odd),
         title: name+' '+oddTitle, 
         game: getMatchup(game.home, game.away)} as Bet;
-        active.push(bet);
+    active.push(bet);
 }
 
 function total(game: BaseballModel | BasketballModel, under: boolean) {
