@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import {ColorPropType, StyleSheet} from 'react-native'
 import { borderWidth } from 'styled-system';
 
 export const Styles = StyleSheet.create({
@@ -31,5 +31,18 @@ export const Styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderRightWidth: 0
-    }
+    },
+    sidebar: {
+        width: 150,
+        overflow: scroll,
+        top: 0,
+        bottom: 0
+    },
+    input: {
+        backgroundColor: 'white', 
+        marginLeft: 20,
+        marginRight: 20,
+        marginBottom: 10,
+        color: 'black'
+      },
   });
